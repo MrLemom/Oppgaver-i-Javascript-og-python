@@ -1,0 +1,16 @@
+
+    function appendToDisplay(value) {
+        document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+
+    function calculate() {
+        var displayValue = document.getElementById('display').value;
+        var result = eval(displayValue);
+        document.getElementById('display').value = result;
+    }
+
+// Jeg tokk fra chatGPT fordi jeg har ikke så fra kunnskap med Javascript :) Honesty is the key 
