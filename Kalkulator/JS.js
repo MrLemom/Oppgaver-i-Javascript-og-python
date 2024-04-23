@@ -13,4 +13,3 @@
         document.getElementById('display').value = result;
     }
 
-// Jeg tokk fra chatGPT fordi jeg har ikke så fra kunnskap med Javascript :) Honesty is the key 
