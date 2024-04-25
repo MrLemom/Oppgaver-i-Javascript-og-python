@@ -1,23 +1,69 @@
-#GHOST GAME
-from random import randint
-print('Ghost Game')
-feeling_brave = True
-score = 0
-while feeling_brave:
-    ghost_door = randint(1, 3)
-    print('Three doors ahead...')
-    print('A ghost behind one.')
-    print('Which door do you open?')
-    door = input('1, 2, or 3: ')
-    door_num = int(door)
-    if door_num == ghost_door:
-        print('GHOST')
-        feeling_brave = False
-    elif door_num < 1 or door_num > 3:
-        print('Invalid choice, please choose again :)')
-    else:
-        print('No ghost!')
-        print('You enter the next room.')
-        score = score + 1
-print('Run away!')
-print('Game Over! You scored', score)
+import turtle
+import random
+
+# Setup screen
+screen = turtle.Screen()
+screen.title("Ghost Game")
+screen.setup(width=600, height=400)
+screen.bgcolor("white")
+
+# Create turtle for drawing
+pen = turtle.Turtle()
+pen.speed(0)
+pen.penup()
+pen.hideturtle()
+
+# Function to draw doors
+def draw_doors(selected_door, ghost_door):
+    pen.clear()
+    pen.goto(-150, 0)
+    for door in range(3):
+        if door + 1 == selected_door:
+            pen.color("black")
+            pen.begin_fill()
+        elif door + 1 == ghost_door:
+            pen.color("black")
+            pen.begin_fill()
+        else:
+            pen.color("black")
+            pen.begin_fill()
+
+        for _ in range(2):
+            pen.forward(100)
+            pen.left(90)
+            pen.forward(150)
+            pen.left(90)
+
+        pen.end_fill()
+        pen.forward(150)
+
+# Game logic
+def ghost_game():
+    print('Ghost Game')
+    score = 0
+    while True:
+        ghost_door = random.randint(1, 3)
+        print('Three doors ahead...')
+        door = int(screen.textinput('Ghost Game', 'Which door do you open? (1, 2, or 3): '))
+        if door == ghost_door:
+            print('GHOST')
+            draw_doors(door, ghost_door)
+            break
+        elif door < 1 or door > 3:
+            print('Invalid choice, please choose again :)')
+        else:
+            print('No ghost!')
+            print('You enter the next room.')
+            score += 1
+            draw_doors(door, ghost_door)
+
+    print('Run away!')
+    print('Game Over! You scored', score)
+
+# Main function
+def main():
+    ghost_game()
+    screen.mainloop()
+
+if __name__ == "__main__":
+    main()
